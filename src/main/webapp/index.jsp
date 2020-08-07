@@ -6,7 +6,7 @@
 </head>
 <body style="background-color: dimgray">
 <div style="width: 500px;background-color: Menu; border: 2px solid ; margin: 10px 900px ">
-<form action="${pageContext.request.contextPath}/userPage" method="post" style="alignment: left">
+<form action="${pageContext.request.contextPath}/userPage" method="post" >
     <table>
         <tr>
             <td>Email:</td>

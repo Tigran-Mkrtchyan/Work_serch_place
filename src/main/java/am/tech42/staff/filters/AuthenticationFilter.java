@@ -15,7 +15,8 @@ public class AuthenticationFilter implements Filter {
      if(request.getSession().getAttribute("logged") == null)   {
          response.setStatus(302);
          response.setHeader("location","/");
+     }else {
+         filterChain.doFilter(request, response);
      }
-     filterChain.doFilter(request,response);
     }
 }

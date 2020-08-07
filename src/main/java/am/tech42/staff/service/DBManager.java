@@ -108,11 +108,49 @@ public class DBManager {
             throw new RuntimeException(e);
         }
     }
+    public static String getEmployeeInformation(String id , EmployeeAttributes attribute){
+        String value = null;
+        switch (attribute){
+            case ADDRESS:
+               value = getAttributeValue(id,EmployeeAttributes.ADDRESS.getValue());
+                break;
+            case BIRTHDAY:
+                value = getAttributeValue(id,EmployeeAttributes.BIRTHDAY.getValue());
+                break;
+            case LAST_NAME:
+                value = getAttributeValue(id,EmployeeAttributes.LAST_NAME.getValue());
+                break;
+            case FIRST_NAME:
+                value = getAttributeValue(id,EmployeeAttributes.FIRST_NAME.getValue());
+                break;
+            case PHONE_NUMBER:
+                value = getAttributeValue(id,EmployeeAttributes.PHONE_NUMBER.getValue());
+                break;
+        }
 
-//
-//    public static void main(String[] args) throws DuplicateValueException {
-//        registerUsers("110B186A9F9FpADD2DB306F67B9p017D","employee","kkkll","lll");
-//
+        return value;
+    }
+    private static  String getAttributeValue(String id, String attribute){
+        String attributeValue = null;
+        try {
+           ps = connect.prepareStatement("select "+attribute+" from employees where user_id = ? ");
+           ps.setString(1,id);
+           ResultSet rs = ps.executeQuery();
+           if(rs.next()) {
+               attributeValue = rs.getString(1);
+           }
+           return attributeValue;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+//    public static void main(String[] args)  {
+//      String value=  DBManager.getEmployeeInformation("E93285F53569D78D5F77A574F3726D36",EmployeeAttributes.PHONE_NUMBER);
+//        System.out.println(value);
 //    }
 
 }

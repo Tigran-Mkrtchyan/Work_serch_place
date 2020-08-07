@@ -18,8 +18,10 @@ public class EmployeeServlet extends HttpServlet {
         if(user == null){
             resp.setStatus(302);
            resp.setHeader("location","/?error");
+        }else {
+
+            req.getSession().setAttribute("logged" ,user);
+            req.getRequestDispatcher("WEB-INF/pages/employee.jsp").forward(req,resp);
         }
-        req.getSession().setAttribute("logged" ,user);
-        req.getRequestDispatcher("/WEB-INF/pages/employee.jsp").forward(req,resp);
     }
 }
