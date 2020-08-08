@@ -6,7 +6,7 @@
 </head>
 <body style="background-color: dimgray">
 <div style="width: 500px;background-color: Menu; border: 2px solid ; margin: 10px 900px ">
-<form action="${pageContext.request.contextPath}/userPage" method="post" >
+<form action="${pageContext.request.contextPath}/login" method="post" style="alignment: left">
     <table>
         <tr>
             <td>Email:</td>
@@ -25,7 +25,7 @@
         <input type="submit" value="Sign In" >
     </label>
  </form>
-    <form action="${pageContext.request.contextPath}/signUp" method="get" style="alignment: right">
+    <form action="${pageContext.request.contextPath}/register" method="get" style="alignment: right">
          <label>
             <input name= "email" type="submit" value="Sign Up">
         </label>

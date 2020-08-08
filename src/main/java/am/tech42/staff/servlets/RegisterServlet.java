@@ -15,8 +15,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        String type= req.getParameter("company");
-        System.out.println(type);
-        if(type == null){
+       if(type == null){
             req.setAttribute("type","employee");
             req.getRequestDispatcher("/WEB-INF/pages/employeeRegister.jsp").forward(req, resp);
         }
@@ -31,6 +30,7 @@ public class RegisterServlet extends HttpServlet {
         String email = req.getParameter("email");
         String pass = req.getParameter("pass");
         String id = req.getSession().getId();
+        req.getSession().invalidate();// for providing new session number
         String type ="employee" ;
 
         try {
@@ -38,10 +38,9 @@ public class RegisterServlet extends HttpServlet {
             String firstName = req.getParameter("firstName");
             String lastName = req.getParameter("lastName");
             String birthday = req.getParameter("y")+"-"+req.getParameter("m")+"-"+req.getParameter("d");
-            System.out.println(birthday);
             DBManager.registerEmployee(user.getId(), Date.valueOf(birthday), firstName, lastName);
             req.getSession().setAttribute("logged" ,user);
-            req.getRequestDispatcher("/userPage").forward(req,resp);
+            req.getRequestDispatcher("/WEB-INF/pages/employee.jsp").forward(req,resp);
         } catch (DuplicateValueException e) {
             if (e.getConstraint().equals("users_pkey")) {
                 req.getSession().invalidate(); // for providing new session number

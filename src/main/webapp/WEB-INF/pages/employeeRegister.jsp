@@ -10,7 +10,7 @@
 </head>
 <body style="background-color: dimgray">
 <div style="width: 500px; border: 2px solid ; margin: 100px auto ">
-    <form action="${pageContext.request.contextPath}/signUp" method="post" >
+    <form action="${pageContext.request.contextPath}/register" method="post" >
         <table>
             <tr>
                 <td>Email:</td>
@@ -29,14 +29,14 @@
             </tr>
             <tr>
             <td> Birthday:</td>
-            <td>YY :<input name="y" type="number" width="25%"/>
-                MM : <input name="m" type="number" width="25%"/>
-                 DD : <input name="d" type="number" width="25%"/>
+            <td>YY :<input name="y" type="number" min=1900 max=2020 width="25%"/>
+                MM : <input name="m" type="number" min=1 max=12 width="25%"/>
+                 DD : <input name="d" type="number"  min=1 max=31 width="25%"/>
             </td>
             </tr>
 
         </table>
-        <input type="submit" value="SignUp" style="width: 30% ;margin: 10px 150px"/>
+        <input type="submit" value="Sign Up" style="width: 30% ;margin: 10px 150px"/>
         <% if(error != null){
             if( request.getParameter("error").equals("email")){
                 out.print("<h1>Email is invalid<h1>");
