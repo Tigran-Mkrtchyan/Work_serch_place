@@ -10,7 +10,7 @@
     </servlet>
     <servlet>
         <servlet-name>login</servlet-name>
-        <servlet-class>am.tech42.staff.servlets.EmployeeServlet</servlet-class>
+        <servlet-class>am.tech42.staff.servlets.LoginServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>register</servlet-name>

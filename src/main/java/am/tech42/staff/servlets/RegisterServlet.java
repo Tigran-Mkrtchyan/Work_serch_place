@@ -1,8 +1,8 @@
 package am.tech42.staff.servlets;
 
-import am.tech42.staff.service.DBManager;
+import am.tech42.staff.service.UserService;
 import am.tech42.staff.service.DuplicateValueException;
-import am.tech42.staff.service.User;
+import am.tech42.staff.main.User;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,13 +34,14 @@ public class RegisterServlet extends HttpServlet {
         String type ="employee" ;
 
         try {
-            User  user = DBManager.registerUsers(id,type,email,pass);
+            User  user = UserService.registerUsers(id,type,email,pass);
             String firstName = req.getParameter("firstName");
             String lastName = req.getParameter("lastName");
             String birthday = req.getParameter("y")+"-"+req.getParameter("m")+"-"+req.getParameter("d");
-            DBManager.registerEmployee(user.getId(), Date.valueOf(birthday), firstName, lastName);
+            UserService.registerEmployee(user.getId(), Date.valueOf(birthday), firstName, lastName);
+            user.setName(firstName);
             req.getSession().setAttribute("logged" ,user);
-            req.getRequestDispatcher("/WEB-INF/pages/employee.jsp").forward(req,resp);
+            req.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(req,resp);
         } catch (DuplicateValueException e) {
             if (e.getConstraint().equals("users_pkey")) {
                 req.getSession().invalidate(); // for providing new session number

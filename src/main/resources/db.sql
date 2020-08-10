@@ -8,7 +8,6 @@ create table users(
                       type varchar (20)
 
 );
-insert into users (id,email,password,type) values ('makerskiroanam2jo0elsmdy7eboeks','.hljshdj','123','employee');
 create table employees(
                           id serial primary key ,
                           user_id char(32) unique not null ,
@@ -34,3 +33,10 @@ create table companies(
     phone_number char(12) check ( phone_number like '+374%'),
     foreign key (user_id) references users(id) on delete cascade
 );
+select u.id ,u.type, concat( e.first_name ,c.company_name) as name from users u
+    left join employees e on u.id = e.user_id
+    left join companies c on u.id = c.user_id
+    where u.email = ? and u.password = ?
+
+    select first_name,last_name,birthday,phone_number,address
+    from employees where user_id = ?

@@ -6,11 +6,11 @@ enum EmployeeAttributes {
     BIRTHDAY("birthday"),
     PHONE_NUMBER("phone_number"),
     ADDRESS ("address");
- private  String value ;
- private EmployeeAttributes(String value){
-     this.value = value;
- }
-public String getValue(){
-     return value;
-}
+    private  String value ;
+    private EmployeeAttributes(String value){
+        this.value = value;
+    }
+    public String getValue(){
+        return value;
+    }
 }
