@@ -46,10 +46,10 @@ public class RegisterServlet extends HttpServlet {
             if (e.getConstraint().equals("users_pkey")) {
                 req.getSession().invalidate(); // for providing new session number
                 resp.setStatus(302);
-                resp.setHeader("location", "/signUp?error=pk");
+                resp.setHeader("location", "/register?error=pk");
             } else if (e.getConstraint().equals("users_email_key")) {
                 resp.setStatus(302);
-                resp.setHeader("location", "/signUp?error=email");
+                resp.setHeader("location", "/register?error=email");
             }
 
         }
