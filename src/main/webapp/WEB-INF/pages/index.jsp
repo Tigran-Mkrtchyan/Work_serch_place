@@ -13,8 +13,7 @@
                    value="Search"/>
         </label>
         <label>
-            <input style="float: left; width: 500px; margin-left: 40px; margin-top: 15px; height: 30px;" type="text"
-                   placeholder="Search"/>
+            <input style="float: left; width: 500px; margin-left: 40px; margin-top: 15px; height: 30px;" type="text" placeholder="Search"/>
         </label>
     </form>
 
@@ -49,7 +48,7 @@
         <a href="${pageContext.request.contextPath}/logout" >
            <button style="position: absolute ;left: 900px ; top :15px;height: 33px;width: 60px" >Logout</button>
         </a>
-        <a href="${pageContext.request.contextPath}/user/employee" >
+        <a href="${pageContext.request.contextPath}/userPage" >
            <button style="position: absolute ;left: 830px ; top :15px;height: 33px;width: 60px" >View Profile</button>
         </a>
 </c:if>

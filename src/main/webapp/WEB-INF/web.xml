@@ -16,6 +16,14 @@
         <servlet-name>register</servlet-name>
         <servlet-class>am.tech42.staff.servlets.RegisterServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>userPage</servlet-name>
+        <servlet-class>am.tech42.staff.servlets.UserPageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>am.tech42.staff.servlets.LogoutServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>home</servlet-name>
         <url-pattern>/</url-pattern>
@@ -28,12 +36,20 @@
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>userPage</servlet-name>
+        <url-pattern>/userPage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
    <filter>
         <filter-name>authentication</filter-name>
         <filter-class>am.tech42.staff.filters.AuthenticationFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>authentication</filter-name>
-        <url-pattern>/em/*</url-pattern>
+        <url-pattern>/userPage</url-pattern>
     </filter-mapping>
 </web-app>

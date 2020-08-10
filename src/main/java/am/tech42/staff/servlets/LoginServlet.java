@@ -1,6 +1,5 @@
 package am.tech42.staff.servlets;
 
-import am.tech42.staff.main.Employee;
 import am.tech42.staff.service.UserService;
 import am.tech42.staff.main.User;
 
@@ -19,9 +18,8 @@ public class LoginServlet extends HttpServlet {
         if(user == null){
             resp.setStatus(302);
            resp.setHeader("location","/?error");
-        }else if(user.getType().equals("employee")) {
-            req.getSession().setAttribute("logged" ,user);
-            req.getRequestDispatcher("WEB-INF/pages/index.jsp").forward(req,resp);
         }
+        req.getSession().setAttribute("logged" ,user);
+        req.getRequestDispatcher("WEB-INF/pages/index.jsp").forward(req,resp);
     }
 }

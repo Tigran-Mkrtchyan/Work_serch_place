@@ -21,6 +21,7 @@
                 <td>First name:</td>
                 <td><input name= "firstName" type="text" placeholder="First name"/></td>
             </tr>
+            <tr>
             <td>Last name:</td>
             <td><input name= "lastName" type="text" placeholder="Last name"/></td>
             </tr>
