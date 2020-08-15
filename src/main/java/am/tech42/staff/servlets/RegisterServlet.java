@@ -1,5 +1,6 @@
 package am.tech42.staff.servlets;
 
+import am.tech42.staff.service.EmployeeService;
 import am.tech42.staff.service.UserService;
 import am.tech42.staff.service.DuplicateValueException;
 import am.tech42.staff.main.User;
@@ -38,7 +39,7 @@ public class RegisterServlet extends HttpServlet {
             String firstName = req.getParameter("firstName");
             String lastName = req.getParameter("lastName");
             String birthday = req.getParameter("y")+"-"+req.getParameter("m")+"-"+req.getParameter("d");
-            UserService.registerEmployee(user.getId(), Date.valueOf(birthday), firstName, lastName);
+            EmployeeService.registerEmployee(user.getId(), Date.valueOf(birthday), firstName, lastName);
             user.setName(firstName);
             req.getSession().setAttribute("logged" ,user);
             req.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(req,resp);

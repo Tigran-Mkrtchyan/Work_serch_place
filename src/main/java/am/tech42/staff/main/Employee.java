@@ -11,7 +11,26 @@ public class Employee {
     private String lastName;
     private int age;
     private String address;
-    private  String phoneNumber;
+    private String phoneNumber;
+
+    public void setCvPath(String cvPath) {
+        this.cvPath = cvPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
+    }
+
+    public String getCvPath() {
+        return cvPath;
+    }
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    private String cvPath;
+    private String imgPath;
 
     public String getFirstName() {
         return firstName;
