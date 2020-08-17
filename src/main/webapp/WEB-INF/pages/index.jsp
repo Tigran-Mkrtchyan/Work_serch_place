@@ -18,39 +18,45 @@
             margin: 10px 50px;
             text-align: center;
         }
+        .myButton{
+            height: 33px;
+            width: 65px;
+            background-color: #dddddd;
+            color: black;
+        }
     </style>
 
 </head>
 <body style="width: 1000px ;margin: 0 auto">
-<div style="width: 100%; height: 60px ;background-color: #ABEBC6 ; position: relative ">
+<div style="width: 100%; height: 70px ;background-color: #ABEBC6 ; position: relative ">
     <form>
         <label>
-            <input style="float: left; width: 60px; margin-left: 20px; margin-top: 15px; height: 30px;" type="submit"
+            <input class ="myButton" style="float: left;margin-left: 20px; margin-top: 20px;" type="submit"
                    value="Search"/>
         </label>
         <label>
-            <input style="float: left; width: 500px; margin-left: 40px; margin-top: 15px; height: 30px;" type="text" placeholder="Search"/>
+            <input style="float: left; width: 500px; margin-left: 40px; margin-top: 20px; height: 30px;" type="text" placeholder="Search"/>
         </label>
     </form>
 
     <c:if test="${logged == null}" >
     <form action="${pageContext.request.contextPath}/register" method="get" target="iframe_a">
         <label style="position: absolute ;left: 920px;color: whitesmoke"  >
-            Company: <input style="position: absolute;left: 25px; top: 30px"  name= "company" type="checkbox" />
+            Company: <input style="position: absolute;left: 25px; top: 35px"  name= "company" type="checkbox" />
         </label>
         <label >
-            <input style="position: absolute ;left: 850px ;top: 30px; height: 25px; width: 60px"  type="submit" value="Sign Up">
+            <input class="myButton" style="position: absolute ;left: 850px ;top: 35px;"  type="submit" value="Sign Up">
         </label>
     </form>
 <form action="${pageContext.request.contextPath}/login" method="post" >
     <label >
-        <input  style="position: absolute ;left: 850px ;height: 25px;width: 60px" type="submit" value="Sign In" >
+        <input class="myButton" style="position: absolute ;top: 1px; left: 850px ;" type="submit" value="Sign In" >
     </label>
       <label >
-           <input style="position: absolute ;left: 640px ; height: 25px" name= "email" type="text" placeholder="Email:" />
+           <input style="position: absolute ;left: 640px ;top: 2px; height: 30px" name= "email" type="text" placeholder="Email:" />
       </label>
       <label >
-            <input style="position: absolute ; left: 640px ;top: 30px; height: 25px" name= "pass" type="password" placeholder="Password"/>
+            <input style="position: absolute ; left: 640px ;top: 35px; height: 30px" name= "pass" type="password" placeholder="Password"/>
       </label>
  </form>
 
@@ -62,10 +68,10 @@
     <c:if test="${logged != null}" >
         <h4 style="position: absolute ;left: 700px " >welcome ${logged.name}</h4>
         <a href="${pageContext.request.contextPath}/logout" >
-           <button style="position: absolute ;left: 900px ; top :15px;height: 33px;width: 60px" >Logout</button>
+           <button class="myButton" style="position: absolute ;left: 900px ; top :15px" >Logout</button>
         </a>
         <a href="${pageContext.request.contextPath}/userPage" >
-           <button style="position: absolute ;left: 830px ; top :15px;height: 33px;width: 60px" >View Profile</button>
+           <button class="myButton" style="position: absolute ;left: 830px ; top :15px" >View Profile</button>
         </a>
 </c:if>
 </div>
@@ -108,12 +114,12 @@
         </select>
     </label>
         <label>
-            <input class="myButton" type="submit" value="Filter" >
+            <input class="myButton" type="submit" value="Filter" style="margin: 10px 100px;" >
         </label>
     </form>
 </div>
 <div style="width:75%;float: left;height: 100%;">
-    <iframe src="${pageContext.request.contextPath}/posts" name="iframe_a" height="100%" width="100%" ></iframe>
+    <iframe src="${pageContext.request.contextPath}/posts" name="iframe_a" height="100%" width="100%" frameborder="0" ></iframe>
 
 </div>
 

@@ -1,9 +1,6 @@
 package am.tech42.staff.main;
 
-//import java.sql.Date;
-
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Employee {
@@ -12,6 +9,18 @@ public class Employee {
     private int age;
     private String address;
     private String phoneNumber;
+    private String cvPath;
+    private String imgPath;
+    private String birthday;
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
 
     public void setCvPath(String cvPath) {
         this.cvPath = cvPath;
@@ -28,9 +37,6 @@ public class Employee {
     public String getImgPath() {
         return imgPath;
     }
-
-    private String cvPath;
-    private String imgPath;
 
     public String getFirstName() {
         return firstName;
@@ -76,9 +82,15 @@ public class Employee {
 
         this.firstName = firstName;
         this.lastName = lastName;
+        this.birthday = birthday.toString();
+        this.age = getAgeFromBirthday(birthday);
+
+    }
+    private int getAgeFromBirthday( java.sql.Date birthday){
         java.util.Date date = new java.util.Date(birthday.getTime());
         Calendar calendar =new GregorianCalendar();
         calendar.setTime(date);
-        this.age = calendar.get(Calendar.YEAR);
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        return currentYear - calendar.get(Calendar.YEAR);
     }
 }

@@ -16,10 +16,10 @@ public class HomeServlet extends HttpServlet {
         List<String> companies = IndexService.getCompanies();
         List<String> levels = IndexService.getLevel();
         List<String> jobTypes = IndexService.getJobTypes();
-        request.setAttribute("skills",skills);
-        request.setAttribute("companies",companies);
-        request.setAttribute("levels",levels);
-        request.setAttribute("jobTypes",jobTypes);
+        request.getSession().getServletContext().setAttribute("skills",skills);
+        request.getSession().getServletContext().setAttribute("companies",companies);
+        request.getSession().getServletContext().setAttribute("levels",levels);
+        request.getSession().getServletContext().setAttribute("jobTypes",jobTypes);
         request.getRequestDispatcher("WEB-INF/pages/index.jsp").forward(request,response);
     }
 }

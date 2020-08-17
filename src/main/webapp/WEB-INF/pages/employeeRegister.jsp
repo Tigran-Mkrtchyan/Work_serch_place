@@ -8,41 +8,46 @@
         input{
             border: none;
             height: 30px;
-            margin-left: 15px;
+         }
+        td{
+            padding-left: 40px;
+        }
+        table{
+            width: 100%;
+            height: 400px;
         }
     </style>
-
 </head>
-<body style="background-color: dimgray">
-<div style="width: 500px; margin: 100px auto ;background-color: whitesmoke">
-    <h1 style="margin: 10px 100px"> Register your account</h1>
+<body>
+<div style="width: 600px; height: 500px; margin: 50px auto ;background-color: #ABEBC6">
+    <h1 style="margin: 10px 150px"> Register your account</h1>
     <form action="${pageContext.request.contextPath}/register" method="post" >
         <table>
             <tr>
-                <td>First name:</td>
+                <td><b>First name:</b></td>
                 <td><input name= "firstName" type="text" placeholder="First name"/></td>
             </tr>
             <tr>
-            <td>Last name:</td>
+            <td><b>Last name:</b></td>
             <td><input name= "lastName" type="text" placeholder="Last name"/></td>
             </tr>
             <tr>
-                <td>Email:</td>
+                <td><b>Email:</b></td>
                 <td><input name= "email" type="text" placeholder="Email"/>
 
                 </td>
             </tr>
             <tr>
-                <td>Password:</td>
+                <td><b>Password:</b></td>
                 <td><input name= "pass" type="password" placeholder="Password"/></td>
             </tr>
 
             <tr>
-                <td>Repeat password:</td>
+                <td><b>Repeat password:</b></td>
                 <td><input name= "pass" type="password" placeholder="Password"/></td>
             </tr>
             <tr>
-            <td> Date of birth:</td>
+                <td><b> Date of birth:</b></td>
             <td>
                 <input name="d" type="number"  min=1 max=31 placeholder="Day"/>
                 <input name="m" type="number" min=1 max=12 placeholder="Month"/>
@@ -51,7 +56,7 @@
             </tr>
 
         </table>
-        <input type="submit" value="Sign Up" style="width: 30% ;height: 30px; margin: 10px 150px;background-color: green"/>
+        <input type="submit" value="Sign Up" style="width: 30% ;height: 30px; margin: 10px 200px;background-color: #ddd"/>
         <c:if  test="${param['error'] .equals('email')}">
             <h3 style="margin-left: 150px;color: red">Email is invalid</h3>
         </c:if>

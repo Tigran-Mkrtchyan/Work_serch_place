@@ -42,7 +42,7 @@ public class RegisterServlet extends HttpServlet {
             EmployeeService.registerEmployee(user.getId(), Date.valueOf(birthday), firstName, lastName);
             user.setName(firstName);
             req.getSession().setAttribute("logged" ,user);
-            req.getRequestDispatcher("/WEB-INF/pages/index.jsp").forward(req,resp);
+            req.getRequestDispatcher("/WEB-INF/pages/posts.jsp").forward(req,resp);
         } catch (DuplicateValueException e) {
             if (e.getConstraint().equals("users_pkey")) {
                 req.getSession().invalidate(); // for providing new session number

@@ -28,8 +28,8 @@ public class EmployeeService {
     public static Employee getEmployee(String id){
         String sql ="select first_name,last_name,birthday,phone_number,address ,cv_path,img_path\n" +
                 "       from employees e\n" +
-                "            inner join cvs c on e.user_id = c.user_id\n" +
-                "            inner join imges i on e.user_id = i.user_id\n" +
+                "            left join cvs c on e.user_id = c.user_id\n" +
+                "            left join imges i on e.user_id = i.user_id\n" +
                 "                where e.user_id = ?";
         try {
             ps = DBConnector.getConnection().prepareStatement(sql);
@@ -103,5 +103,10 @@ public class EmployeeService {
         }
 
 
+    }
+
+    public static void main(String[] args) {
+        Employee employee = EmployeeService.getEmployee("D884B87B6A3E8EFE0F1E77741647F19A");
+       System.out.println(employee.getFirstName() +employee.getAge());
     }
 }

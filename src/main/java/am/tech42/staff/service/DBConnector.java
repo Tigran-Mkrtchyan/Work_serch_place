@@ -6,12 +6,12 @@ import java.sql.SQLException;
 
 public class DBConnector{
 
-    private static final Connection connection;
+    private static final Connection connection ;
     private static final String dbUser = "test";
     private static final String dbPass = "test";
     private static final String jdbcUrl = "jdbc:postgresql://fm-toolbox.duckdns.org:5433/staff";
 
-    static {
+    static{
         try {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(jdbcUrl, dbUser, dbPass);
