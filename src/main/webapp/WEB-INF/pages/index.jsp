@@ -4,28 +4,7 @@
 <html>
 <head>
     <title>Welcome Staff</title>
-    <link href="indexStyle.css" rel="stylesheet">
-    <style>
-        button,input{
-            border: none;
-        }
-        h2{
-            text-align: center;
-        }
-        select{
-            width: 150px;
-            height: 30px;
-            margin: 10px 50px;
-            text-align: center;
-        }
-        .myButton{
-            height: 33px;
-            width: 65px;
-            background-color: #dddddd;
-            color: black;
-        }
-    </style>
-
+    <style ><%@include file="/WEB-INF/css/indexStyle.css"%></style>
 </head>
 <body style="width: 1000px ;margin: 0 auto">
 <div style="width: 100%; height: 70px ;background-color: #ABEBC6 ; position: relative ">
@@ -40,7 +19,7 @@
     </form>
 
     <c:if test="${logged == null}" >
-    <form action="${pageContext.request.contextPath}/register" method="get" target="iframe_a">
+    <form action="${pageContext.request.contextPath}/register?company=x" method="get" target="iframe_a">
         <label style="position: absolute ;left: 920px;color: whitesmoke"  >
             Company: <input style="position: absolute;left: 25px; top: 35px"  name= "company" type="checkbox" />
         </label>
@@ -79,7 +58,7 @@
     <form action="${pageContext.request.contextPath}/posts" target="iframe_a" method="post">
     <h2>Filter by skills</h2>
     <label>
-        <select name="skill" >
+        <select class="filterSelect" name="skill" >
             <option >All</option>
             <c:forEach var="item" items="${skills}">
                <option >${item}</option>
@@ -88,7 +67,7 @@
     </label>
     <h2>Filter by job types </h2>
     <label>
-        <select name="jobType" >
+        <select class="filterSelect" name="jobType" >
             <option >All</option>
             <c:forEach var="item" items="${jobTypes}">
                 <option >${item}</option>
@@ -97,7 +76,7 @@
     </label>
     <h2> Filter by companies</h2>
     <label>
-        <select name="company" >
+        <select class="filterSelect" name="company" >
             <option >All</option>
             <c:forEach var="item" items="${companies}">
                 <option >${item}</option>
@@ -106,7 +85,7 @@
     </label>
     <h2> Filter by specialist level</h2>
     <label>
-        <select name="level" >
+        <select class="filterSelect" name="level" >
             <option >All</option>
             <c:forEach var="item" items="${levels}">
                 <option >${item}</option>

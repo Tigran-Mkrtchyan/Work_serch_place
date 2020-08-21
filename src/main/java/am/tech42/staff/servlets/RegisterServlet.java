@@ -15,14 +15,14 @@ import java.sql.Date;
 public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       String type= req.getParameter("company");
-       if(type == null){
-            req.setAttribute("type","employee");
-            req.getRequestDispatcher("/WEB-INF/pages/employeeRegister.jsp").forward(req, resp);
-        }
-        req.setAttribute("type", "company");
-        req.getRequestDispatcher("/WEB-INF/pages/companyRegister.jsp").forward(req, resp);
 
+       String type = req.getParameter("company");
+
+      if(type == null){
+         req.getRequestDispatcher("/WEB-INF/pages/employeeRegister.jsp").forward(req, resp);
+       }else {
+        req.getRequestDispatcher("/WEB-INF/pages/companyRegister.jsp").forward(req, resp);
+      }
     }
 
     @Override

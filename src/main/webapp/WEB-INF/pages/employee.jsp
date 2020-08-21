@@ -74,14 +74,16 @@
         </a>
     </div>
     <div  class ="subscribe" style="float: right" >
-        <form method="post" action="/posts" target="iframe_e">
-            <select name="company" >
-                <option > --- </option>
-                <c:forEach var="item" items="${companies}">
-                    <option >${item}</option>
-                </c:forEach>
-                <input type="submit" value="subscribe">
-            </select>
+        <form method="post" action="${pageContext.request.contextPath}/posts" target="iframe_e">
+            <label>
+                <select name="company" >
+                    <option > --- </option>
+                    <c:forEach var="item" items="${companies}">
+                        <option >${item}</option>
+                    </c:forEach>
+                    <input type="submit" value="subscribe">
+                </select>
+            </label>
         </form>
     </div>
 </div>

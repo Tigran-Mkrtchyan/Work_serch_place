@@ -1,0 +1,25 @@
+.myButton{
+    height: 33px;
+    width: 65px;
+    background-color: #dddddd;
+    color: black;
+}
+button,input{
+    border: none;
+}
+h2{
+    text-align: center;
+}
+.filterSelect{
+    width: 150px;
+    height: 30px;
+    margin: 10px 50px;
+    text-align: center;
+}
+.userTypeSelect{
+    float: right;
+    height: 100%;
+    color: whitesmoke ;
+    color: black;
+}
+
