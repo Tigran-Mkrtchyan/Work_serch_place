@@ -1,7 +1,7 @@
 package am.tech42.staff.servlets;
 
-import am.tech42.staff.main.Employee;
-import am.tech42.staff.main.User;
+import am.tech42.staff.model.Employee;
+import am.tech42.staff.model.User;
 import am.tech42.staff.service.EmployeeService;
 
 import javax.servlet.ServletException;

@@ -1,4 +1,4 @@
-package am.tech42.staff.main;
+package am.tech42.staff.model;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;

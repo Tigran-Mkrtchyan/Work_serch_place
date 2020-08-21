@@ -1,6 +1,6 @@
 package am.tech42.staff.service;
 
-import am.tech42.staff.main.User;
+import am.tech42.staff.model.User;
 import org.postgresql.util.PSQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

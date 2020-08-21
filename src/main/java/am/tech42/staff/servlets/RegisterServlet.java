@@ -3,7 +3,7 @@ package am.tech42.staff.servlets;
 import am.tech42.staff.service.EmployeeService;
 import am.tech42.staff.service.UserService;
 import am.tech42.staff.service.DuplicateValueException;
-import am.tech42.staff.main.User;
+import am.tech42.staff.model.User;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

@@ -1,6 +1,6 @@
 package am.tech42.staff.servlets;
 
-import am.tech42.staff.main.PostHeader;
+import am.tech42.staff.model.PostHeader;
 import am.tech42.staff.service.PostService;
 
 import javax.servlet.ServletException;

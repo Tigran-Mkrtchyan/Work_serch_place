@@ -1,4 +1,4 @@
-package am.tech42.staff.main;
+package am.tech42.staff.model;
 
 public class User {
     private String id ;

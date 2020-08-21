@@ -1,6 +1,6 @@
 package am.tech42.staff.service;
 
-import am.tech42.staff.main.PostHeader;
+import am.tech42.staff.model.PostHeader;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
