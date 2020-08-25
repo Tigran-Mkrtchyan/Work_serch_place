@@ -1,8 +1,7 @@
 package am.tech42.staff.servlets;
 
-import am.tech42.staff.service.UserService;
 import am.tech42.staff.model.User;
-
+import am.tech42.staff.service.UserService;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +18,7 @@ public class LoginServlet extends HttpServlet {
             resp.setStatus(302);
            resp.setHeader("location","/?error");
         }
-        req.getSession().setAttribute("logged" ,user);
+        req.getSession().setAttribute("logged" , user);
         req.getRequestDispatcher("WEB-INF/pages/index.jsp").forward(req,resp);
     }
 }

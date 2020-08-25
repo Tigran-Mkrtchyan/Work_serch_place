@@ -1,55 +1,77 @@
 package am.tech42.staff.service;
 
+import am.tech42.staff.model.Employee;
 import am.tech42.staff.model.User;
+import am.tech42.staff.model.UserEntity;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.postgresql.util.PSQLException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 import java.sql.SQLException;
 
-public class UserService {
-    private static PreparedStatement ps;
 
-   public static User registerUsers(String id, String type, String email, String password ) throws DuplicateValueException {
-        try{
-            ps = DBConnector.getConnection().prepareStatement("insert into users (id,email,password,type) values  (?,?,?,?)");
-            ps.setString(1,id);
-            ps.setString(2,email);
-            ps.setString(3,password);
-            ps.setString(4,type);
-            ps.executeUpdate();
-            return getUser(email,password);
-        }
-        catch (PSQLException pe) {
-          throw new DuplicateValueException(pe);
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-   }
-    public static User signIn(String email,String password){
-        try {
-            return getUser(email, password);
-        } catch (SQLException e) {
-            e.printStackTrace();
+public class UserService {
+
+    public static UserEntity registerUsers(String id, String type, String email, String password) throws DuplicateValueException {
+        Transaction tx = null;
+        try (Session session = SessionFactoryConnector.getSessionFactory().openSession()) {
+            tx = session.beginTransaction();
+            UserEntity userEntity = new UserEntity();
+            userEntity.setId(id);
+            userEntity.setType(type);
+            userEntity.setEmail(email);
+            userEntity.setPassword(password);
+            session.save(userEntity);
+            tx.commit();
+            return userEntity;
+        } catch (PersistenceException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            if (e.getCause().getCause() instanceof SQLException) {
+                PSQLException causeOfException = (PSQLException) e.getCause().getCause();
+                throw new DuplicateValueException(causeOfException);
+            } else {
+                new RuntimeException(e);
+            }
+            return null;
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
             throw new RuntimeException(e);
         }
     }
-    private static User getUser(String email,String password) throws SQLException{
-        String sql = "select u.id ,u.type, concat( e.first_name ,c.company_name) as name from users u\n" +
-                "    left join employees e on u.id = e.user_id\n" +
-                "    left join companies c on u.id = c.user_id\n" +
-                "    where u.email = ? and u.password = ?";
-        ps = DBConnector.getConnection().prepareStatement(sql);
-        ps.setString(1,email);
-        ps.setString(2,password);
-        ResultSet rs = ps.executeQuery();
-        if( rs.next()) {
-            String id = rs.getString(1);
-            String type = rs.getString(2);
-            String name = rs.getString(3);
-            return new User(id,type,name);
+
+
+    public static User signIn(String email, String password) {
+        User user;
+        String name = null;
+        UserType userType;
+        try (Session session = SessionFactoryConnector.getSessionFactory().openSession()) {
+            Transaction tx = session.beginTransaction();
+            Query<UserEntity> query = session.createQuery("from UserEntity where email= :email and password= :pass ", UserEntity.class);
+            query.setParameter("email", email);
+            query.setParameter("pass", password);
+            UserEntity userEntity = query.getSingleResult();
+            if (userEntity.getType().equals(UserType.EMPLOYEE.getValue())) {
+                Employee employee = session.find(Employee.class, userEntity.getId());
+                name = employee.getFirstName();
+                userType = UserType.EMPLOYEE;
+            } else {
+                // Company company = session.find(Employee.class,userEntity.getId());
+                // name = company.getName();
+                userType = UserType.COMPANY;
+            }
+            user = new User(userEntity.getId(), userType, name);
+            tx.commit();
+            return user;
+        } catch (NoResultException e) {
+            return null;
         }
-     return null;
+
     }
+
 }

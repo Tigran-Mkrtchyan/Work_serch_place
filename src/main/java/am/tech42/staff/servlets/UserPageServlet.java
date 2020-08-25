@@ -2,6 +2,7 @@ package am.tech42.staff.servlets;
 
 import am.tech42.staff.model.Employee;
 import am.tech42.staff.model.User;
+import am.tech42.staff.service.CompanyService;
 import am.tech42.staff.service.EmployeeService;
 
 import javax.servlet.ServletException;
@@ -14,12 +15,15 @@ public class UserPageServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("logged");
-        if(user.getType().equals("employee")){
+        if (user.getUserType().getValue().equals("employee")) {
             Employee employee = EmployeeService.getEmployee(user.getId());
-                request.getSession().setAttribute("employee",employee);
-            request.getRequestDispatcher("WEB-INF/pages/employee.jsp").forward(request,response);
+            request.getSession().setAttribute("employee", employee);
+            request.getRequestDispatcher("WEB-INF/pages/employee.jsp").forward(request, response);
+        } else {
+            // Company company = CompanyService.getCompany(user.getId())
+            // request.getSession().setAttribute("company",company);
+            request.getRequestDispatcher("WEB-INF/pages/company.jsp").forward(request, response);
         }
-        request.getRequestDispatcher("WEB-INF/pages/company.jsp").forward(request,response);
 
 
     }

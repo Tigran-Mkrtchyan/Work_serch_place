@@ -1,0 +1,51 @@
+body{
+    width: 1000px ;
+    margin: 0 auto;
+}
+.header {
+    height: 60px;
+    width: 100%;
+    background-color: #abebc6;
+}
+.header a {
+    height: 80%;
+    width: 60px;
+    padding: 6px;
+    color: #000000;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}
+.header button {
+    height: 80%;
+    width: 60px;
+    padding: 6px;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}
+.header a:hover {
+    background-color: #dddddd;
+    color: black;
+}
+.employeeInf{
+    float: left;
+    width: 792px;
+    height: 100%;
+    border: solid 2px #abebc6;
+    background-color: whitesmoke;
+}
+.employeeInf h1 {
+    margin: 10px 150px;
+}
+.employeeInf h3 {
+    margin: 30px 100px;
+}
+.posts{
+    float: left;
+    width: 996px;
+    height: 300px;
+    border: 2px solid #abebc6;
+    background-color: whitesmoke;
+}

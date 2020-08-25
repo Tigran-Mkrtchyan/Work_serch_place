@@ -16,7 +16,7 @@
             height: 400px;
         }
     </style>
-    <script ><%@include file="/WEB-INF/js/register.js"%></script>
+  <!--   <script ><%@include file="/WEB-INF/js/register.js"%></script> -->
 </head>
 <body>
 <div style="width: 600px; height: 500px; margin: 50px auto ;background-color: #ABEBC6">

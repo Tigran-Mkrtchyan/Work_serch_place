@@ -12,14 +12,14 @@ import java.util.List;
 public class HomeServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        List<String> skills = IndexService.getSkills();
-//        List<String> companies = IndexService.getCompanies();
-//        List<String> levels = IndexService.getLevel();
-//        List<String> jobTypes = IndexService.getJobTypes();
-//        request.getSession().getServletContext().setAttribute("skills",skills);
-//        request.getSession().getServletContext().setAttribute("companies",companies);
-//        request.getSession().getServletContext().setAttribute("levels",levels);
-//        request.getSession().getServletContext().setAttribute("jobTypes",jobTypes);
+        List<String> skills = IndexService.getSkills();
+     //   List<String> companies = IndexService.getCompanies();
+        List<String> levels = IndexService.getLevel();
+        List<String> jobTypes = IndexService.getJobTypes();
+        request.getSession().getServletContext().setAttribute("skills",skills);
+       // request.getSession().getServletContext().setAttribute("companies",companies);
+        request.getSession().getServletContext().setAttribute("levels",levels);
+        request.getSession().getServletContext().setAttribute("jobTypes",jobTypes);
         request.getRequestDispatcher("WEB-INF/pages/index.jsp").forward(request,response);
     }
 }

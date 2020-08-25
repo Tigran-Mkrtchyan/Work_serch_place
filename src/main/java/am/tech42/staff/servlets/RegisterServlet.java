@@ -1,9 +1,8 @@
 package am.tech42.staff.servlets;
 
-import am.tech42.staff.service.EmployeeService;
-import am.tech42.staff.service.UserService;
-import am.tech42.staff.service.DuplicateValueException;
 import am.tech42.staff.model.User;
+import am.tech42.staff.service.EmployeeService;
+import am.tech42.staff.service.DuplicateValueException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,18 +30,15 @@ public class RegisterServlet extends HttpServlet {
         String email = req.getParameter("email");
         String pass = req.getParameter("pass");
         String id = req.getSession().getId();
+        String firstName = req.getParameter("firstName");
+        String lastName = req.getParameter("lastName");
+        String birthday = req.getParameter("y")+"-"+req.getParameter("m")+"-"+req.getParameter("d");
         req.getSession().invalidate();// for providing new session number
-        String type ="employee" ;
 
         try {
-            User  user = UserService.registerUsers(id,type,email,pass);
-            String firstName = req.getParameter("firstName");
-            String lastName = req.getParameter("lastName");
-            String birthday = req.getParameter("y")+"-"+req.getParameter("m")+"-"+req.getParameter("d");
-            EmployeeService.registerEmployee(user.getId(), Date.valueOf(birthday), firstName, lastName);
-            user.setName(firstName);
-            req.getSession().setAttribute("logged" ,user);
-            req.getRequestDispatcher("/WEB-INF/pages/posts.jsp").forward(req,resp);
+            User user = EmployeeService.registerEmployee(id,email,pass, Date.valueOf(birthday), firstName, lastName);
+            req.getSession().setAttribute("logged" , user);
+            req.getRequestDispatcher("/posts").forward(req,resp);
         } catch (DuplicateValueException e) {
             if (e.getConstraint().equals("users_pkey")) {
                 req.getSession().invalidate(); // for providing new session number
