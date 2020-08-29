@@ -1,6 +1,8 @@
 package am.tech42.staff.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "levels")
@@ -11,6 +13,9 @@ public class Level {
 
     @Column(name = "level_name")
     private String levelName;
+
+    @ManyToMany(mappedBy = "levels")
+    private Set<Post> posts =new HashSet<>();
 
     public int getId() {
         return id;

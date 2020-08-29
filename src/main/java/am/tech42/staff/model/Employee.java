@@ -1,15 +1,17 @@
 package am.tech42.staff.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 @Entity
 @Table(name = "employees")
-public class Employee {
+public class Employee  implements Serializable {
     @Id
-    @Column(name = "user_id")
-    private String userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private UserEntity user;
 
     @Column(name="first_name")
     private String firstName;
@@ -30,6 +32,31 @@ public class Employee {
     @Transient
     private int age ;
 
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     public Date getBirthday() {
         return birthday;
     }
@@ -38,63 +65,45 @@ public class Employee {
         this.birthday = birthday;
     }
 
-    public void setCvPath(String cvPath) {
-        this.cvUrl = cvPath;
-    }
-
-    public void setImgPath(String imgPath) {
-        this.imgUrl = imgPath;
-    }
-
-    public String getCvPath() {
-        return cvUrl;
-    }
-
-    public String getImgPath() {
-        return imgUrl;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
+    public String getAddress() {
+        return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getCvUrl() {
+        return cvUrl;
+    }
+
+    public void setCvUrl(String cvUrl) {
+        this.cvUrl = cvUrl;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
 
     public void evaluateAgeFromBirthday(){
         java.util.Date date = new java.util.Date(birthday.getTime());
@@ -105,11 +114,6 @@ public class Employee {
     }
     public Employee(){
     }
-    public Employee(String userId, String firstName, String lastName, Date birthday) {
-        this.userId = userId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthday = birthday;
-    }
+
 
 }

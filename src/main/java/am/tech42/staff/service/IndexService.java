@@ -19,16 +19,16 @@ public class IndexService {
         }
     }
 
-//    public static List<String> getCompanies() {
-//        List<String> companyNames;
-//        try (Session session = SessionFactoryConnector.getSessionFactory().openSession()) {
-//            Transaction tx = session.beginTransaction();
-//            Query<String> query = session.createQuery("Select companyName from Company ", String.class);
-//            companyNames = query.list();
-//            tx.commit();
-//            return companyNames;
-//        }
-//    }
+    public static List<String> getCompanies() {
+        List<String> companyNames;
+        try (Session session = SessionFactoryConnector.getSessionFactory().openSession()) {
+            Transaction tx = session.beginTransaction();
+            Query<String> query = session.createQuery("Select companyName from Company ", String.class);
+            companyNames = query.list();
+            tx.commit();
+            return companyNames;
+        }
+    }
 
     public static List<String> getLevel() {
         List<String> levels;

@@ -21,7 +21,7 @@
 <body>
 <div style="width: 600px; height: 500px; margin: 50px auto ;background-color: #ABEBC6">
     <h1 style="margin: 10px 150px"> Register your account</h1>
-    <form  action="${pageContext.request.contextPath}/register" onsubmit="validate(event)" method="post" >
+    <form  action="${pageContext.request.contextPath}/register"  target="_parent" method="post" >
         <table id = "registerTable">
             <tr>
                 <td><b>First name:</b></td>

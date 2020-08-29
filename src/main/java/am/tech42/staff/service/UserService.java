@@ -1,5 +1,6 @@
 package am.tech42.staff.service;
 
+import am.tech42.staff.model.Company;
 import am.tech42.staff.model.Employee;
 import am.tech42.staff.model.User;
 import am.tech42.staff.model.UserEntity;
@@ -15,9 +16,8 @@ import java.sql.SQLException;
 public class UserService {
 
     public static UserEntity registerUsers(String id, String type, String email, String password) throws DuplicateValueException {
-        Transaction tx = null;
         try (Session session = SessionFactoryConnector.getSessionFactory().openSession()) {
-            tx = session.beginTransaction();
+            Transaction  tx = session.beginTransaction();
             UserEntity userEntity = new UserEntity();
             userEntity.setId(id);
             userEntity.setType(type);
@@ -27,9 +27,6 @@ public class UserService {
             tx.commit();
             return userEntity;
         } catch (PersistenceException e) {
-            if (tx != null) {
-                tx.rollback();
-            }
             if (e.getCause().getCause() instanceof SQLException) {
                 PSQLException causeOfException = (PSQLException) e.getCause().getCause();
                 throw new DuplicateValueException(causeOfException);
@@ -37,14 +34,8 @@ public class UserService {
                 new RuntimeException(e);
             }
             return null;
-        } catch (Exception e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            throw new RuntimeException(e);
         }
     }
-
 
     public static User signIn(String email, String password) {
         User user;
@@ -61,8 +52,8 @@ public class UserService {
                 name = employee.getFirstName();
                 userType = UserType.EMPLOYEE;
             } else {
-                // Company company = session.find(Employee.class,userEntity.getId());
-                // name = company.getName();
+                 Company company = session.find(Company.class,userEntity.getId());
+                 name = company.getCompanyName();
                 userType = UserType.COMPANY;
             }
             user = new User(userEntity.getId(), userType, name);

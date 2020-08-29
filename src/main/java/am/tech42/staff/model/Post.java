@@ -11,22 +11,40 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "user_id")
-    private String userId;
+
+    @ManyToOne
+    @JoinColumn(name ="user_id", referencedColumnName = "user_id")
+    private Company company;
 
     private String description;
+
     private Date deadline;
-    private boolean isDeadPost;
+
     @ManyToOne
+    @JoinColumn(name = "jobType_id" ,referencedColumnName = "id")
     private JobType jobType;
-    @ManyToMany
+
+    @ManyToMany(fetch = FetchType.EAGER)//because any time when I get post entity I use levels.
     @JoinTable(name = "post_level",
             joinColumns = {@JoinColumn(name = "post_id")},
             inverseJoinColumns = {@JoinColumn(name = "level_id")}
     )
     private Set<Level> levels = new HashSet<>();
+
     @ManyToOne
+    @JoinColumn(name = "skill_id" ,referencedColumnName = "id")
     private Skill skill;
+
+    public Post(){}
+    public Post(Company company, String description, Date deadline, JobType jobType, Set<Level> levels, Skill skill) {
+        this.company = company;
+        this.description = description;
+        this.deadline = deadline;
+        this.jobType = jobType;
+        this.levels = levels;
+        this.skill = skill;
+    }
+
 
     public int getId() {
         return id;
@@ -36,12 +54,12 @@ public class Post {
         this.id = id;
     }
 
-    public String getUserId() {
-        return userId;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public String getDescription() {
@@ -58,14 +76,6 @@ public class Post {
 
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
-    }
-
-    public boolean isDeadPost() {
-        return isDeadPost;
-    }
-
-    public void setDeadPost(boolean deadPost) {
-        isDeadPost = deadPost;
     }
 
     public JobType getJobType() {

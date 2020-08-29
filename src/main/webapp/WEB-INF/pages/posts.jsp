@@ -43,10 +43,7 @@
                 </c:if>
                 <div style="float:left; ">
                     <p>
-                    <c:forEach var="level" items="${post.levels}">
-                       ${level}
-                    </c:forEach>
-                        -  ${post.skill} Developer
+                     ${post.skill} Developer
                     </p>
 
                     <p>Company: ${post.companyName}</p>

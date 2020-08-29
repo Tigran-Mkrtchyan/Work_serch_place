@@ -22,10 +22,10 @@
 </div>
 <div style="width: 100% ;height: 300px">
     <div style="width:200px; height: 300px;float: left ;border: solid 2px #dddddd">
-        <c:if test="${employee.imgPath != null}">
-            <img src="${employee.imgPath}" alt="Employee picture" width="100%" height="100%">
+        <c:if test="${employee.imgUrl != null}">
+            <img src="${employee.imgUrl}" alt="Employee picture" width="100%" height="100%">
         </c:if>
-        <c:if test="${employee.imgPath == null}">
+        <c:if test="${employee.imgUrl == null}">
             <button style=" width:100% ;height:100%">Add photo</button>
         </c:if>
     </div>
